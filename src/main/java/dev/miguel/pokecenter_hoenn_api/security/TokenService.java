@@ -12,6 +12,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import static java.time.ZoneOffset.UTC;
+
 @Service
 public class TokenService {
 
@@ -52,6 +54,6 @@ public class TokenService {
     private Instant generateExpirationDate(){
         return LocalDateTime.now()
                 .plusHours(4)
-                .toInstant(ZoneOffset.of("UTC"));
+                .toInstant(ZoneOffset.UTC);
     }
 }

@@ -21,13 +21,13 @@ public class DatabaseSeeder {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Value("${app.headNurse.username}")
+    @Value("${app.admin.username}")
     private String adminUsername;
 
-    @Value("${app.headNurse.password}")
+    @Value("${app.admin.password}")
     private String adminPassword;
 
-    @Value("${app.headNurse.name}")
+    @Value("${app.admin.name}")
     private String adminName;
 
     @EventListener(ApplicationReadyEvent.class)
@@ -43,7 +43,7 @@ public class DatabaseSeeder {
             admin.setUsername(adminUsername);
             admin.setPassword(passwordEncoder.encode(adminPassword));
             admin.setName(adminName);
-            admin.setRole(UserRole.HEAD_NURSE);
+            admin.setRole(UserRole.ADMIN);
 
             userRepository.save(admin);
             System.out.println("Default admin created successfully: " + adminUsername);

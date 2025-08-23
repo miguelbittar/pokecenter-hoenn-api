@@ -50,7 +50,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @PreAuthorize("hasRole('HEAD_NURSE')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body) {
         Optional<User> userOptional = this.userRepository.findByUsername(body.username());
 

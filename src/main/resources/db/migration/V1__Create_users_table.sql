@@ -3,6 +3,6 @@ CREATE TABLE users (
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,
-    role VARCHAR(15) NOT NULL DEFAULT 'NURSE',
-    CONSTRAINT valid_role CHECK (role IN ('NURSE', 'HEAD_NURSE'))
+    role VARCHAR(15) NOT NULL DEFAULT 'USER',
+    CONSTRAINT valid_role CHECK (role IN ('USER', 'ADMIN'))
 );
