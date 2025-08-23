@@ -22,19 +22,23 @@ public class User {
 
     @NotBlank
     @Size(max = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @NotBlank
     @Size(min = 3, max = 30)
-    @Column(updatable = false)
+    @Column(length = 30, nullable = false, updatable = false, unique = true)
     private String username;
 
-    @NotBlank
-    @Size(min = 6)
-    private String password;
+        @NotBlank
+        @Size(min = 6)
+        @Column(length = 255, nullable = false)
+        private String password;
 
     @Enumerated(EnumType.STRING)
     @NotNull
+    @Column(length = 15, nullable = false)
     private UserRole role;
+
 
 }
