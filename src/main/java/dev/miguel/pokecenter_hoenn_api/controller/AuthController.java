@@ -10,6 +10,7 @@ import dev.miguel.pokecenter_hoenn_api.util.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @PreAuthorize("hasRole('HEAD_NURSE')")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body) {
         Optional<User> userOptional = this.userRepository.findByUsername(body.username());
 
@@ -57,7 +59,7 @@ public class AuthController {
             newUser.setPassword(passwordEncoder.encode(body.password()));
             newUser.setUsername(body.username());
             newUser.setName(body.name());
-            newUser.setRole(UserRole.NURSE);
+            newUser.setRole(body.role());
             this.userRepository.save(newUser);
 
             String token = this.tokenService.generateToken(newUser);
